@@ -24,7 +24,7 @@ export const counterSlice = createSlice({
       state.showModal = true;
       state.attachmentData = action.payload;
     },
-    handleHideModal: (state, action) => {
+    handleHideModal: (state) => {
       state.showModal = false;
     },
   },

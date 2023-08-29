@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { handleHideModal, handleTaskData } from "./redux/counterSlice";
+import { handleHideModal } from "./redux/counterSlice";
 
 const AttachmentModal = () => {
-  const { showModal, attachmentData, tasksData } = useSelector(
-    (state) => state.counter
-  );
+  const { showModal } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
   const [file, setFile] = useState();
   const initialInputValues = {
     name: "",
     message: "",
   };
-  let obj = [];
   const [inputValues, setInputValues] = useState(initialInputValues);
 
   const handleInputChange = (e) => {
@@ -32,27 +29,8 @@ const AttachmentModal = () => {
       message: inputValues.message,
       file: file.name,
     };
-
-    tasksData.map((item) => {
-      if (item.id == attachmentData.boxId) {
-        const updatedItems = item.items.map((task) => {
-          if (task.id == attachmentData.id) {
-            obj = [...obj, finalData];
-            return { ...task, attachedData: obj };
-          }
-          return task;
-        });
-
-        return { ...item, items: updatedItems };
-      }
-      return item;
-    });
-    // dispatch(handleTaskData(newData));
+    console.log(finalData);
   };
-
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
 
   return (
     <>
